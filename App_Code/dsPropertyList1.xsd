@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsPropertyList" targetNamespace="http://tempuri.org/dsPropertyList1.xsd" xmlns:mstns="http://tempuri.org/dsPropertyList1.xsd" xmlns="http://tempuri.org/dsPropertyList1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ConnOres" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnOres (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ConnOres.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vPropertyListTableAdapter" Name="vPropertyList">
+            <MainSource>
+              <DbSource ConnectionRef="ConnOres (Web.config)" DbObjectName="dbo.vPropertyList" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT CityName, PropertyID, PropertyDescription, PropertyPrice, AdditionalInfo, DateAdded, TitleHeading, PropertyAddress, SizeofProperty, UnitName, IsNegotiable, IsFinalized, IsCancelled, Active, AreaLocName, CategoryName, TypeName, ModeName, CountryName, StateName FROM dbo.vPropertyList</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="CityName" DataSetColumn="CityName" />
+              <Mapping SourceColumn="PropertyID" DataSetColumn="PropertyID" />
+              <Mapping SourceColumn="PropertyDescription" DataSetColumn="PropertyDescription" />
+              <Mapping SourceColumn="PropertyPrice" DataSetColumn="PropertyPrice" />
+              <Mapping SourceColumn="AdditionalInfo" DataSetColumn="AdditionalInfo" />
+              <Mapping SourceColumn="DateAdded" DataSetColumn="DateAdded" />
+              <Mapping SourceColumn="TitleHeading" DataSetColumn="TitleHeading" />
+              <Mapping SourceColumn="PropertyAddress" DataSetColumn="PropertyAddress" />
+              <Mapping SourceColumn="SizeofProperty" DataSetColumn="SizeofProperty" />
+              <Mapping SourceColumn="UnitName" DataSetColumn="UnitName" />
+              <Mapping SourceColumn="IsNegotiable" DataSetColumn="IsNegotiable" />
+              <Mapping SourceColumn="IsFinalized" DataSetColumn="IsFinalized" />
+              <Mapping SourceColumn="IsCancelled" DataSetColumn="IsCancelled" />
+              <Mapping SourceColumn="Active" DataSetColumn="Active" />
+              <Mapping SourceColumn="AreaLocName" DataSetColumn="AreaLocName" />
+              <Mapping SourceColumn="CategoryName" DataSetColumn="CategoryName" />
+              <Mapping SourceColumn="TypeName" DataSetColumn="TypeName" />
+              <Mapping SourceColumn="ModeName" DataSetColumn="ModeName" />
+              <Mapping SourceColumn="CountryName" DataSetColumn="CountryName" />
+              <Mapping SourceColumn="StateName" DataSetColumn="StateName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsPropertyList" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="False">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vPropertyList">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CityName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PropertyID" type="xs:int" />
+              <xs:element name="PropertyDescription" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PropertyPrice" type="xs:int" minOccurs="0" />
+              <xs:element name="AdditionalInfo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DateAdded" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="TitleHeading" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PropertyAddress" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SizeofProperty" type="xs:int" minOccurs="0" />
+              <xs:element name="UnitName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IsNegotiable" type="xs:boolean" minOccurs="0" />
+              <xs:element name="IsFinalized" type="xs:boolean" minOccurs="0" />
+              <xs:element name="IsCancelled" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Active" type="xs:boolean" minOccurs="0" />
+              <xs:element name="AreaLocName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CategoryName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TypeName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ModeName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CountryName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StateName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vPropertyList" />
+      <xs:field xpath="mstns:PropertyID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
