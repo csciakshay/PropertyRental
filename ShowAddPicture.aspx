@@ -1,0 +1,1 @@
+<%@ Page Language="VB" AutoEventWireup="false" CodeFile="ShowAddPicture.aspx.vb" Inherits="ShowPicture" %>

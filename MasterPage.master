@@ -1,0 +1,360 @@
+﻿<%@ Master Language="VB" CodeFile="MasterPage.master.vb" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>VU Online Real Estate</title>
+    <link href="css/OresLayout.css" rel="stylesheet" type="text/css" />  
+    <link href="css/stylesheet.css" rel="stylesheet" type="text/css" />  
+    <link href="css/ChromeGridView.css" rel="stylesheet" type="text/css" />
+
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="wrapper">
+    
+    <!--Header-->
+      
+      <div id="header">
+    	<!-- * Logo * -->
+           <div id="logo">
+             <h1><a href="index.aspx"><strong>Online Real</strong> Estate</a></h1>
+           </div>
+	   
+      <!-- * Top Nave * -->	 
+      <!-- <div id="nav">
+        <ul>
+          <li><asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/index.aspx" Text="Home"></asp:HyperLink></li>
+          <li><%If HttpContext.Current.User.Identity.IsAuthenticated Then%>
+              <a href="logout.aspx">Logout</a>
+              <% Else%>
+              <a href="login.aspx">Login</a>
+              <% End If%>
+          </li> 
+         </ul>
+      </div> -->
+         
+         
+      <!-- * Top Nav * -->
+      <div class="HTmenuContainer">
+          <ul class="menu">
+          <li><a href="index.aspx"><span>Home</span></a></li>
+          <li><a href="ContactUS.aspx"><span>Contact Us</span></a></li>
+          <li><%If HttpContext.Current.User.Identity.IsAuthenticated Then%>
+              <a href="logout.aspx"><span>Logout</span></a>
+              <% Else%>
+              <a href="login.aspx"><span>Login</span></a>
+              <% End If%>
+          </li>
+          
+          </ul>
+      </div> 
+       
+       
+       
+       
+       </div>
+
+         <!-- * Nav Bar * 
+         <div id="navigation">
+		     <div class="HBmenuContainer">
+              <ul class="menu">
+               <li><a href="/home" class="active"><span>Home</span></a></li>
+               <li><a href="/services"><span>Login</span></a></li>
+               <li><a href="/services"><span>Login</span></a></li>
+               <li><a href="/services"><span>Login</span></a></li>
+             </ul>
+            </div>   
+		 </div>            -->
+	    
+
+<!-- advertisement bar -->
+  <!--     <div id="addbar">
+       
+        <table width="1000" align="center">
+        <tr> 
+          <td bgcolor="#999999" height="100" width="410">cell1:</td>
+          <td bgcolor="#999999" height="100" width="410">cell1:</td>
+          <td bgcolor="#999999" height="100" width="180">
+              <asp:Image ID="Image1" runat="server" ImageUrl="~/images/Advertiseus1.jpg" Height="100" Width="180" /></td>
+        </tr>
+       </table>
+
+       </div>  -->
+    
+         <!-- * content area * -->
+    	 <div id="content">
+             <div id="rnd_container">
+               <b class="rnd_top"><b class="rnd_b1"></b><b class="rnd_b2"></b><b class="rnd_b3"></b><b class="rnd_b4"></b></b>
+                 <div class="rnd_content"> 
+              
+                 <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+                 <h2>Your Text Goes Here</h2>
+                 Attention all those who are willing to appear in DPE 08/09, others to ignore it.  Sample paper, detailed instructions are attached sample answer sheet is also attached for reference. Queries if any may be referred to AM Sonia Yawar, Ext 2065   
+                 </asp:ContentPlaceHolder>
+                 
+                 </div>
+               <b class="rnd_bottom"><b class="rnd_b4"></b><b class="rnd_b3"></b><b class="rnd_b2"></b><b class="rnd_b1"></b></b>
+              </div>
+         
+     	 </div>
+         
+		 
+         
+         <div id="rightcolumn">
+	
+           <!-- Start side br contents -->
+           <!--  <div class="mnuheading"> My Account</div> 
+               <div class="buttonscontainer">
+                  <div class="buttons">
+                     <a href="">Modify Signup information</a>
+                     <a href="CustomerProfile.aspx">Modify Personel Profile</a>
+                     <a href="ChangePassword.aspx">Change Password</a>
+                     <a href="">Add New Listing</a>
+                     <a href="">View/Edit Listing</a>
+                     <a href="logout.aspx">Logout</a>
+                        
+                  </div>
+                </div> -->
+             <!-- End side contents -->
+
+
+           <!-- * Vertical Menu * 
+            <ul class="vmenu">
+             <li><a href="/home" class="active"><span>Home</span></a></li>
+             <li><a href="/services"><span>Services</span></a></li>
+
+             <li><a href="/about"><span>About</span></a></li>
+             <li><a href="/contact"><span>Contact</span></a></li>
+            </ul>                                                            -->
+           
+            
+            
+            <asp:LoginView ID="LoginView1" runat="server">
+             <LoggedInTemplate>
+            
+            <!--nested login view for all roles-->
+            <asp:LoginView ID="LgnvAllRolesWelcome" runat="server">
+              <RoleGroups>
+              <asp:RoleGroup Roles="Admin,Customer,Agent">
+              <ContentTemplate>
+                 
+              <!-- Greeting message for regestered users -->
+                   <div class="rnd_box">
+                    <b class="rnd_top"><b class="rnd_b1"></b><b class="rnd_b2"></b><b class="rnd_b3"></b><b class="rnd_b4"></b></b>
+                     <div class="rnd_content"> 
+                      Welcome to  <asp:LoginName ID="LoginName1" runat="server"></asp:LoginName>
+                    </div>
+                   <b class="rnd_bottom"><b class="rnd_b4"></b><b class="rnd_b3"></b><b class="rnd_b2"></b><b class="rnd_b1"></b></b>
+                  </div>
+                 
+                         
+             </ContentTemplate>
+             </asp:RoleGroup>
+             </RoleGroups>
+             </asp:LoginView>             
+ 
+                 
+            
+             
+            <!-- Vertical menu -->
+            <div class="rnd_container_menu">
+               <b class="rnd_top"><b class="rnd_b1"></b><b class="rnd_b2"></b><b class="rnd_b3"></b><b class="rnd_b4"></b></b>
+                 <div class="rnd_content"> 
+                 
+                     
+                    <div id="menu12">
+                      <ul>
+                        <li><div class="bt1"><span class="ht11">»&nbsp;</span>
+                        <span class="hw12">Profile</span></div></li>
+ 
+ <!--nested login view for all roles-->
+ <asp:LoginView ID="LgnvAllRoles" runat="server">
+ <RoleGroups>
+ <asp:RoleGroup Roles="Admin,Customer,Agent">
+ <ContentTemplate>                       
+                        
+                        <li><a title="Personel Info" href="CustomerProfile.aspx">Personel Info</a></li>
+                        <li><a title="Reset Password" href="ChangePassword.aspx">Reset Password</a></li>
+                       
+</ContentTemplate>
+</asp:RoleGroup>
+</RoleGroups>
+</asp:LoginView>    
+
+
+ <!--nested login view for customer and agent-->
+ <asp:LoginView ID="LgnvCustomerAgent" runat="server">
+ <RoleGroups>
+ <asp:RoleGroup Roles="Customer,Agent">
+ <ContentTemplate>
+
+                          
+                        <li><div class="bt1"><span class="ht11">»&nbsp;</span>
+                        <span class="hw12">Listings</span></div></li>
+                        
+                        <li><a title="Add New Property" href="AddProperty.aspx">Add New Property</a></li>
+                        <li><a title="Manage Property1" href="ManageProperty1.aspx">Manage Property</a></li>
+                        
+
+</ContentTemplate>
+</asp:RoleGroup>
+</RoleGroups>
+</asp:LoginView>   
+
+
+<!--nested login view for agent-->
+ <asp:LoginView ID="LoginViewAgent" runat="server">
+ <RoleGroups>
+ <asp:RoleGroup Roles="Agent">
+ <ContentTemplate>
+
+                        <li><a title="Update Bid Status" href="UpdateBidStatus.aspx">Update Bid Status</a></li>
+
+</ContentTemplate>
+</asp:RoleGroup>
+</RoleGroups>
+</asp:LoginView>   
+
+
+
+ <!--nested login view for Admin-->
+ <asp:LoginView ID="LgnvAdmin" runat="server">
+ <RoleGroups>
+ <asp:RoleGroup Roles="Admin">
+ <ContentTemplate>   
+                        
+                        
+                        <li><div class="bt1"><span class="ht11">»&nbsp;</span>
+                        <span class="hw12">Site Setup</span></div></li>
+                      
+                        <li><a title="Property Category" href="PropertyCategory.aspx">Property Category</a></li>
+                        <li><a title="Property Mode" href="PropertyMode.aspx">Property Mode</a></li>
+                        <li><a title="Property Type" href="PropertyType.aspx">Property Type</a></li>
+                        
+                        <li><div class="bt1"><span class="ht11">»&nbsp;</span>
+                        <span class="hw12">Area Setup</span></div></li>
+
+                        <li><a title="Country" href="Country.aspx">Country</a></li>
+                        <li><a title="State" href="State.aspx">State</a></li>
+                        <li><a title="City" href="PropertyCity.aspx">City</a></li>
+                        <li><a title="Area Location" href="AreaLocation.aspx">Area Location</a></li>
+
+                        <li><div class="bt1"><span class="ht11">»&nbsp;</span>
+                        <span class="hw12">Site Management</span></div></li>
+
+                        <li><a title="Manage Agents" href="ManageAgents.aspx">Manage Agents</a></li>
+                        <li><a title="Manage Clients" href="ManageClients.aspx">Manage Clients</a></li>
+                        <li><a title="Add Advertisements" href="AddAdvertisements.aspx">Add Advertisements</a></li>
+                        <li><a title="Manage Advertisements" href="ManageAdvertisement.aspx">Manage Advertisements</a></li>
+
+                        
+                        <li><div class="bt1"><span class="ht11">»&nbsp;</span>
+                        <span class="hw12">Reports</span></div></li>
+                        <li><a title="Property List" href="PropertyList1.aspx">Property List</a></li>
+                        <li><a title="Client List" href="ClientList.aspx">Client List</a></li>
+                        <li><a title="Agent Directory" href="AgentDir.aspx">Agent Directory</a></li>
+                        <li><a title="Customer List" href="CustomerList.aspx">Customer List</a></li>
+     
+                        
+</ContentTemplate>
+</asp:RoleGroup>
+</RoleGroups>
+</asp:LoginView>  
+
+
+
+                      </ul>
+                    </div>
+
+                </div>       <!-- rnd_content -->
+               <b class="rnd_bottom"><b class="rnd_b4"></b><b class="rnd_b3"></b><b class="rnd_b2"></b><b class="rnd_b1"></b></b>
+              </div>  <!-- rnd_container_menu -->
+
+             </LoggedInTemplate>
+                </asp:LoginView>   
+               
+   <!-- Right addvertisement bar-->
+     <div class="rnd_box"> <b class="rnd_top"><b class="rnd_b1"></b><b class="rnd_b2"></b><b class="rnd_b3"></b><b class="rnd_b4"></b></b> <div class="rnd_content"> 
+     
+        
+        <asp:HyperLink ID="HyperLink1" runat="server" 
+           ImageUrl="~/images/Advertiseus2.jpg" NavigateUrl="~/ContactUs.aspx" 
+                BorderStyle="None"></asp:HyperLink>
+        
+     <div class="linespace">   </div>
+
+     
+     
+         
+         <asp:GridView ID="grdAddvertise" runat="server" AutoGenerateColumns="False" 
+             DataKeyNames="AdvertisementID" DataSourceID="SqlDsAdvertisement" PageSize="1" 
+             Width="225px" GridLines="None">
+             <Columns>
+                 <asp:BoundField DataField="AdvertisementID" HeaderText="AdvertisementID" 
+                     InsertVisible="False" ReadOnly="True" SortExpression="AdvertisementID" 
+                     Visible="False" />
+                 <asp:CheckBoxField DataField="Active" HeaderText="Active" 
+                     SortExpression="Active" Visible="False" />
+                 <asp:TemplateField HeaderText="Classified Add" ShowHeader="False">
+                     <ItemTemplate>
+                     <table>
+                      <tr><td>
+                         <asp:Label ID="Label1" runat="server" 
+                             Text='<%# Bind("AdvertisementTitle") %>' ForeColor="#B5C83C"></asp:Label>
+                         </td>
+                       </tr>
+                      <tr><td>
+                          <asp:Image ID="Image1" runat="server" Height="225px" 
+                              ImageUrl='<%# Eval("AdvertisementID", "~/ShowAddPicture.aspx?pAdvertisementID={0}") %>' 
+                              Width="225px" />
+                          </td></tr>
+                      <tr style="color: #c0c0c0"><td>
+                      <asp:Label ID="Label2" runat="server" Text='<%# Bind("AdvertisementDetail") %>'></asp:Label>
+                      
+                          <asp:HyperLink ID="HyperLink1" runat="server" 
+                              NavigateUrl='<%# Eval("AdvertisementID", "ShowAddDetail.aspx?AdvertisementID={0}") %>' 
+                              Text="Details"></asp:HyperLink>
+                      
+                      </td></tr>
+                     </table>
+
+                       
+                     </ItemTemplate>
+                     <HeaderStyle CssClass="heading1" />
+                 </asp:TemplateField>
+             </Columns>
+         </asp:GridView>
+
+
+         <asp:SqlDataSource ID="SqlDsAdvertisement" runat="server" 
+             ConnectionString="<%$ ConnectionStrings:ConnOres %>" 
+             
+             SelectCommand="SELECT TOP (1) AdvertisementID, AdvertisementTitle, SUBSTRING(AdvertisementDetail, 1, 75) AS AdvertisementDetail, Active FROM Advertisement WHERE (Active = 1) ORDER BY NEWID()">
+         </asp:SqlDataSource>
+
+
+     </div><b class="rnd_bottom"><b class="rnd_b4"></b><b class="rnd_b3"></b><b class="rnd_b2"></b><b class="rnd_b1"></b></b> </div>
+   
+   
+   
+   
+   
+
+
+
+		 </div>  <!-- end right column -->
+
+         <!-- Footer -->
+		 <div id="footer">
+			   <p class="copy"><span><a href="http://www.prixsol.com/property-management-software">Propert Management System (ORES)</a></span> &nbsp;by &nbsp;<a href="http://www.prixsol.com/">Prix Solutions</a></p>
+         </div>  
+    </div>        
+    
+    </form>
+    
+</body>
+</html>
