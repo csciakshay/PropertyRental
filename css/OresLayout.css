@@ -1,0 +1,317 @@
+/* Global properties ======================================================== */
+
+/** { padding: 0; margin: 0; }*/
+
+body {
+    background:#1d1d1d; 
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:100%; 
+	line-height:1.125em;
+	color:#c0c0c0;
+}
+
+html { min-width:980px;}
+html, body { height:100%;}
+
+p {
+ padding: 10px;
+}
+
+
+/* Global Structure ============================================== */
+
+#wrapper
+{
+    margin: 0 auto;
+    width: 1000px;
+}
+
+#content
+{
+    float: left;
+    background: #121212;
+    height: auto;
+    width: 750px;
+    display: inline;
+}
+
+#header {
+ width: 100%;
+ float: left;
+ height: 125px;
+ border-bottom:2px solid #2a2a2a;
+ background:url(../images/header-pattern.gif) 50% 0 #1d1d1d;
+}
+
+#addbar {
+ width: 100%;
+ float: left;
+ height: 120px;
+ border-bottom:2px solid #2a2a2a;
+}
+
+#addbarright
+{
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+
+
+
+#footer
+{
+    width: 1000px;
+    height: 25px;
+    clear: both;
+    border-top: 1px solid #292929;
+    padding: 5px 0 5px 0;
+    font-size:.625em;
+}
+
+#navigation {
+ float: left;
+ width: 1000px;
+ height: 40px;
+}
+
+#rightcolumn { 
+ height: auto;
+ /*height: 350px;*/
+ width: 250px;
+ float: left;
+}
+
+/*----- txt, links, lines, titles -----*/
+a {
+	color:#c0c0c0; 
+	outline:none;
+}
+a:hover{
+	text-decoration:none;
+}
+
+h2 {
+	font-size:33px;
+	color:#fff;
+	line-height:1.2em;
+	font-style:italic;
+	font-weight:normal;
+	letter-spacing:-1px;
+	margin-bottom:.5em;
+}
+h3 {
+	font: bold 14px Verdana, Arial, Helvetica, sans-serif;
+	color: #FF9900;
+	
+}
+h4 {
+	font-size:1em;
+	color:#616161;
+	margin-bottom:12px;
+}
+h5 {
+	font-size:15px;
+	line-height:20px;
+	font-weight:normal;
+	color:#909090;
+	font-style:italic;
+	margin-bottom:1em;
+}
+
+
+/* Header 
+---------------------------------------- */
+
+/* Logo */
+#logo
+{
+    /*position: absolute;*/
+    margin: 15px 0px 0px 10px;
+    top: 10px;
+    background: url(../images/logo.png) no-repeat 0 0;
+    padding: 10px 0 0 20px;
+}
+	#logo h1 {
+		font-size:30px;
+		line-height:1.2em;
+		color:#c3c3c3;
+		font-weight:normal;
+		font-style:italic;
+		letter-spacing:-1px;
+		}
+		#logo h1 a {
+			color:#c3c3c3;
+			text-decoration:none;
+			}
+			#logo h1 a strong {
+				color:#fff;
+				}
+
+/* Navigation */
+#nav
+{
+    float: right;
+    position: absolute;
+    right: 150px;
+    top: 37px;
+    
+}
+	#nav ul li {
+		float:left;
+		padding-left:6px;
+		list-style-type: none;
+		}
+		#nav ul li a {
+			float:left;
+			color:#fff;
+			text-decoration:none;
+			width:80px;
+			text-align:center;
+			line-height:31px;
+			font-size:14px;
+		
+			}
+		#nav ul li a:hover,
+		#nav ul li a.current {
+			background:url(../images/nav-bg.gif) 0 0 repeat-x;
+			
+			}
+
+
+/* -------- sidebr Navigation ----------*/
+.buttonscontainer {width: 250px;}
+
+.buttons a
+{
+    color: #FFFFFF;
+    background-color: #1d1d1d;
+    padding: 10px;
+    padding-left: 3px;
+    display: block;
+    border-bottom: 1px solid #000099;
+    font: 13px Arial, sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: left;
+    border-bottom-color: #b5c83c;
+}
+
+.buttons a:hover
+{
+    background-color: #b5c83c;
+    color: #000000;
+    text-decoration: none;
+}
+
+.mnuheading
+{
+    padding: 5px;
+    font-size: large;
+    color: #CCCC00;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+
+
+/*===== footer =====*/
+#footer .copy {
+		
+		}
+		#footer .copy span {
+			text-transform:uppercase;
+			color:#e1e1e1;
+			}
+		#footer .copy a {
+			color:#777;
+			}
+			
+			
+.greetings
+{
+    color: #FFFFFF;
+    font-weight: lighter;
+    font-size: medium;
+    padding-bottom: 10px;
+}
+
+
+
+/* -------- Misc ----------*/
+
+.insertbtn
+{
+    width: 100%;
+    text-align: right;
+    margin-right: 5px;
+}
+
+
+.linespace
+{
+    padding: 10px;
+    display: block;
+    width: 100%;
+}
+
+
+
+
+.ErrorMsgBox
+{
+    padding: 0px;
+    margin: 0px;
+    font-size: 9px;
+    color: #FF3300;
+}
+
+.InfoMsgBox
+{
+    font-size: 9pt;
+    color: #FFCC00;
+}
+
+
+
+
+
+/* -------- table layour for grid on index page ----------*/
+.gridtable .table
+{
+width : 500px
+}
+
+
+.heading1
+{
+    margin: 0px;
+    font: bold 14px Verdana, Arial, Helvetica, sans-serif;
+    color: #FF9900;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+
+.justfytext
+{
+    text-align: justify;
+}
+
+
+
+
+/* -------- scrool bars ----------*/
+div.scroll
+{
+height: 400px;
+width: 675px;
+overflow :auto ;
+border :1px solid #666;
+padding: 8px;
+}
+
+
