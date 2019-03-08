@@ -1,79 +1,105 @@
-﻿
-Partial Class PropertyCategory
+﻿Imports System.Data.SqlClient
+Imports System.Data
+Imports Class1
+Partial Class state
     Inherits System.Web.UI.Page
+    Dim dbCon As New Class1
 
     Protected Sub Button1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button1.Click
+        Try
+            dbCon.conOpen()
 
+            Dim cmd As New SqlCommand()
+            cmd.Connection = dbCon.con
+            cmd.CommandText = "insState"
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.AddWithValue("stateId", TextBox1.Text)
+            cmd.Parameters.AddWithValue("stateName", TextBox2.Text)
+            If cmd.ExecuteNonQuery() Then
+                MsgBox("State saved.")
+            Else
+                MsgBox("State not saved.")
+            End If
+            SqlDataSource1.DataBind()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        Finally
+            dbCon.conClose()
+        End Try
+    End Sub
+    Function getstateid() As Integer
+        Dim max As Integer
+        Try
+            dbCon.conOpen()
+            Dim cmd As New SqlCommand("select MAX(coalesce(Stateid,0)) from stateMaster", dbCon.con)
+            If IsDBNull(cmd.ExecuteScalar()) Then
+                max = 0
+            Else
+                max = cmd.ExecuteScalar()
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
 
-        If Me.Panelnsert.Visible = False Then
-            Me.Panelnsert.Visible = True
-        Else
-            Me.Panelnsert.Visible = False
-        End If
+        Finally
+            dbCon.conClose()
+        End Try
+        Return max + 1
 
+    End Function
 
+    Protected Sub Button2_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button2.Click
+        TextBox1.Text = getstateid()
+        TextBox2.Text = ""
+    End Sub
 
+    Protected Sub Button3_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button3.Click
+        Try
+            dbCon.conOpen()
+
+            Dim cmd As New SqlCommand()
+            cmd.Connection = dbCon.con
+            cmd.CommandText = "updState"
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.AddWithValue("stateId", TextBox1.Text)
+            cmd.Parameters.AddWithValue("stateName", TextBox2.Text)
+            If cmd.ExecuteNonQuery() Then
+                MsgBox("State update.")
+            Else
+                MsgBox("State not update.")
+            End If
+            SqlDataSource1.DataBind()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        Finally
+            dbCon.conClose()
+        End Try
     End Sub
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        ShowInfoMessage.Visible = False
+        TextBox1.Text = getstateid()
+
     End Sub
 
+    Protected Sub DropDownList1_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles DropDownList1.SelectedIndexChanged
+        Try
+            dbCon.conOpen()
 
-    Protected Sub SqlDataSource1_Inserted(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.SqlDataSourceStatusEventArgs) Handles SqlDataSource1.Inserted
-
-        If Not e.Exception Is Nothing Then
-
-            If e.Exception.Message.StartsWith("Violation of UNIQUE KEY constraint") Then
-                ShowInfoMessage.Text = "State with same name already exists"
-                ShowInfoMessage.Visible = True
-                e.ExceptionHandled = True
-
-            ElseIf e.Exception.Message.StartsWith("Cannot insert the value NULL into column") Then
-                ShowInfoMessage.Text = "State name can not be left blank"
-                ShowInfoMessage.Visible = True
-                e.ExceptionHandled = True
-
+            Dim cmd As New SqlCommand("select * from stateMaster where stateId=" + DropDownList1.SelectedValue + "", dbCon.con)
+            Dim adp As New SqlDataAdapter()
+            adp.SelectCommand = cmd
+            Dim dt As New Data.DataTable()
+            adp.Fill(dt)
+            If dt.Rows.Count > 0 Then
+                TextBox1.Text = dt.Rows(0)("stateId").ToString
+                TextBox2.Text = dt.Rows(0)("stateName").ToString
+            Else
+                MsgBox("No record found")
             End If
-        Else
-            ShowInfoMessage.Text = "Record Has been saved Successfully"
-            ShowInfoMessage.Visible = True
-        End If
 
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        Finally
+            dbCon.conClose()
+        End Try
     End Sub
-
-
-    Protected Sub SqlDataSource1_Updated(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.SqlDataSourceStatusEventArgs) Handles SqlDataSource1.Updated
-        If Not e.Exception Is Nothing Then
-
-            If e.Exception.Message.StartsWith("Violation of UNIQUE KEY constraint") Then
-                ShowInfoMessage.Text = "State with same name already exists"
-                ShowInfoMessage.Visible = True
-                e.ExceptionHandled = True
-
-            ElseIf e.Exception.Message.StartsWith("Cannot insert the value NULL into column") Then
-                ShowInfoMessage.Text = "State name can not left blank"
-                ShowInfoMessage.Visible = True
-                e.ExceptionHandled = True
-
-            End If
-        Else
-            ShowInfoMessage.Text = "Record Has been updated Successfully"
-            ShowInfoMessage.Visible = True
-        End If
-    End Sub
-
-    Protected Sub SqlDataSource1_Deleted(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.SqlDataSourceStatusEventArgs) Handles SqlDataSource1.Deleted
-        If Not e.Exception Is Nothing Then
-            If e.Exception.Message.StartsWith("The DELETE statement conflicted with the REFERENCE constraint") Then
-                ShowInfoMessage.Text = "Can't be deleted! Child Records Exits"
-                ShowInfoMessage.Visible = True
-                e.ExceptionHandled = True
-            End If
-        Else
-            ShowInfoMessage.Text = "Record Has been deleted Successfully"
-            ShowInfoMessage.Visible = True
-        End If
-    End Sub
-
 End Class
