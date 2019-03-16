@@ -41,7 +41,7 @@ Partial Class Default4
 
     
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        TextBox9.Text = getpid()
+        ' TextBox9.Text = getpid()
         yy.con.Close()
     End Sub
 End Class

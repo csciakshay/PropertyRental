@@ -3,237 +3,113 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-
-       
-    
-
-    <div class="rnd_box"> <b class="rnd_top"><b class="rnd_b1"></b><b class="rnd_b2"></b><b class="rnd_b3"></b><b class="rnd_b4"></b></b> <div class="rnd_content">
-          
-    <table>
-    <tr>
-      
-      <td style="color: #b5c83c;">Property Type :</td>
-      <td>
-          <asp:RadioButtonList ID="RadioButton_PropertyType" runat="server" Width="221px" 
-              RepeatDirection="Horizontal" DataSourceID="PropertyTypeSqlDataSource1" 
-              DataTextField="TypeName" DataValueField="TypeID">
-          </asp:RadioButtonList>
-          
-        </td>
-    <td style="color: #b5c83c; padding-left: 40px; padding-top: 20px;" rowspan="7"> 
-        <asp:Image ID="Image1" runat="server" ImageUrl="~/images/searchimage2.jpg" />
-        </td>
-    </tr>
-    <tr>
-      <td style="color: #b5c83c;">Property Mode :</td>
-      <td>
-          <asp:RadioButtonList ID="RadioButton_PropertyMode" runat="server" 
-              DataSourceID="PropertyModeSqlDataSource1" DataTextField="ModeName" 
-              DataValueField="ModeID" RepeatDirection="Horizontal" Width="221px">
-          </asp:RadioButtonList>
-        </td>
-    </tr>
-    <tr>
-      <td style="color: #b5c83c;">Category :</td>
-      <td>
-          <asp:DropDownList ID="ddlCatg" runat="server" 
-              DataSourceID="PropertyCategorySqlDataSource1" DataTextField="CategoryName" 
-              DataValueField="CategoryID" Width="150px">
-          </asp:DropDownList>
-        </td>
-    </tr>
-    <tr>
-      <td style="color: #b5c83c;">Area :</td>
-      <td>
-          <asp:DropDownList ID="ddlArea" runat="server" 
-              DataSourceID="AreaLocSqlDataSource1" DataTextField="AreaLocName" 
-              DataValueField="AreaLocID" Width="150px">
-          </asp:DropDownList>
-        </td>
-    </tr>
-    <tr>
-      <td style="color: #b5c83c;">City :</td>
-      <td>
-          <asp:DropDownList ID="ddlCity" runat="server" DataSourceID="CitySqlDataSource1" 
-              DataTextField="CityName" DataValueField="CityID" Width="150px">
-          </asp:DropDownList>
-        </td>
-    </tr>
-    <tr>
-      <td style="color: #b5c83c;">State</td>
-      <td>
-          <asp:DropDownList ID="ddlState" runat="server" 
-              DataSourceID="StateSqlDataSource1" DataTextField="StateName" 
-              DataValueField="StateID" Width="150px">
-          </asp:DropDownList>
-        </td>
-    </tr>
-    <tr>
-     <td></td>
-     <td>
-         <asp:Button ID="BtnSearch" runat="server" Text="Search" />
-        </td>
-        
-    </tr>
-    </table>
-
-
-   </div> <b class="rnd_bottom"><b class="rnd_b4"></b><b class="rnd_b3"></b><b class="rnd_b2"></b><b class="rnd_b1"></b></b> </div>
-
-    <asp:SqlDataSource ID="PropertyTypeSqlDataSource1" runat="server" 
-                        ConnectionString="<%$ ConnectionStrings:ConnOres %>" 
-                        SelectCommand="SELECT [TypeID], [TypeName], [Active] FROM [PropertyType]
-                        WHERE Active = 1 "></asp:SqlDataSource>
-
-     
-    <asp:SqlDataSource ID="PropertyModeSqlDataSource1" runat="server" 
-                        ConnectionString="<%$ ConnectionStrings:ConnOres %>" 
+<section class="sample-text-area">
+<div class="container">
+            <h1>PROPERTYS FOR SALES</h1>       
+<div class="section-top-border">
+<div class="row">
+     <div class="col-lg-2 col-md-2">
+     </div>
+     <div class="col-lg-2 col-md-2">
+     <asp:DropDownList ID="DropDownList2" runat="server">
+                        <asp:ListItem Value="" Text ="">- Select Property Type-</asp:ListItem>
+                        <asp:ListItem Value="Tenament" Text ="Tenament"></asp:ListItem>
+                        <asp:ListItem Value="Flat" Text ="Flat"></asp:ListItem>
+                        <asp:ListItem Value="Room" Text ="Room"></asp:ListItem>
+                        </asp:DropDownList>
+                        </div>
+                        <div class="col-lg-2 col-md-2">
+                        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource2" 
+                                DataTextField="cityName" DataValueField="cityId">
                         
-        SelectCommand="SELECT ModeID, ModeName, Active FROM PropertyMode WHERE (Active = 1) AND (ModeName &lt;&gt; 'Buy')">
-    </asp:SqlDataSource>
-    <asp:SqlDataSource ID="PropertyCategorySqlDataSource1" runat="server" 
-                        ConnectionString="<%$ ConnectionStrings:ConnOres %>" 
-                        SelectCommand="SELECT [CategoryID], [CategoryName], [Active] FROM [PropertyCatgeory]
-WHERE Active = 1 "></asp:SqlDataSource>
-    <asp:SqlDataSource ID="AreaLocSqlDataSource1" runat="server" 
-                        ConnectionString="<%$ ConnectionStrings:ConnOres %>" 
-                        SelectCommand="SELECT [AreaLocID], [AreaLocName], [Active], [CityID] FROM [AreaLocation]
-WHERE Active = 1 
-"></asp:SqlDataSource>
-    <asp:SqlDataSource ID="CitySqlDataSource1" runat="server" 
-                        ConnectionString="<%$ ConnectionStrings:ConnOres %>" 
-                        SelectCommand="SELECT [CityID], [CityName], [Active] FROM [City]
-WHERE Active = 1 "></asp:SqlDataSource>
-    <asp:SqlDataSource ID="StateSqlDataSource1" runat="server" 
-                        ConnectionString="<%$ ConnectionStrings:ConnOres %>" 
-                        SelectCommand="SELECT [StateID], [StateName], [CountryID], [Active] FROM [State]
-WHERE Active = 1 "></asp:SqlDataSource>
-
-     
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
-        DataKeyNames="PropertyID" DataSourceID="SqlDsPropertyList" AllowPaging="True" 
-            AllowSorting="True" GridLines="None">
-        <Columns>
-            <asp:TemplateField><ItemTemplate>
-                 
-             <table cellpadding="0" cellspacing="0" style="border-style: none;"> 
-                <tr> 
-                 <td colspan="4" 
-                        style="border-style: none; color: #b5c83c; background-color: #333333;"> 
-                    <asp:Label ID="Label10" runat="server" Text='<%# Bind("TitleHeading") %>'></asp:Label>
-                 </td>
-                </tr>
-                
-                              
-                <tr> 
-                 <td rowspan="7" style="border-style: none; background-color: #121212" width="150"> 
-                  <asp:Image ID="Image1" runat="server" Height="145" 
-                         ImageUrl='<%# Eval("PropertyID", "~/ShowPicture.aspx?pPropertyID={0}") %>' 
-                         Width="145" />
-                  </td>
-                 
-                 <td rowspan="7" valign="top" style="background-color: #121212" width="400"> 
-                    
-                 <asp:Label ID="Label4" runat="server" Text='<%# Bind("PropertyDescription") %>'></asp:Label>
-                     <asp:HyperLink ID="HyperLink1" runat="server" 
-                         NavigateUrl='<%# Eval("PropertyID", "PropertyDetail.aspx?ID={0}") %>' 
-                         Text="View Details"></asp:HyperLink>
-                     
-                 </td> 
-                </tr>
-
-               
-                <tr> 
-                 <td style="border-style: none; color: #b5c83c; background-color: #121212;"> Added:  </td> 
-                 <td style="border-style: none; background-color: #121212;" nowrap="nowrap">  
-                 <asp:Label ID="Label3" runat="server" Text='<%# Bind("DateAdded") %>'></asp:Label>
-                 </td>
-                </tr>
-                
-                <tr> 
-                 <td style="border-style: none; color: #b5c83c; background-color: #121212;"> Mode:  </td> 
-                 <td style="border-style: none; background-color: #121212;">  
-                 <asp:Label ID="Label8" runat="server" Text='<%# Bind("ModeName") %>'></asp:Label>
-                 </td>
-                </tr>
-                
-                <tr>
-                 <td style="border-style: none; color: #b5c83c; background-color: #121212;"> Price:  </td> 
-                 <td style="border-style: none; background-color: #121212;" nowrap="nowrap">  
-                 <asp:Label ID="Label2" runat="server" Text='<%# Bind("PropertyPrice") %>'></asp:Label> /=
-                 </td> 
-                </tr>
-                
-                <tr>
-                 <td style="border-style: none; color: #b5c83c; background-color: #121212;"> Size:  </td> 
-                 <td style="border-style: none; background-color: #121212;">  
-                 <asp:Label ID="Label5" runat="server" Text='<%# Bind("SizeofProperty") %>'></asp:Label> 
-                     <asp:Label ID="Label9" runat="server" 
-                         Text='<%# Bind("UnitName") %>'></asp:Label>
-                 </td> 
-                </tr>
-                
-                <tr>
-                 <td style="border-style: none; color: #b5c83c; background-color: #121212;"> City:  </td> 
-                 <td style="border-style: none; background-color: #121212;">  
-                 <asp:Label ID="Label6" runat="server" Text='<%# Bind("CityName") %>'></asp:Label>
-                 </td> 
-                </tr>
-
-                <tr>
-                 <td style="border-style: none; color: #b5c83c; background-color: #121212;"> Area:  </td> 
-                 <td style="border-style: none; background-color: #121212;" nowrap="nowrap">  
-                 <asp:Label ID="Label7" runat="server" Text='<%# Bind("AreaLocName") %>'></asp:Label>
-                 </td> 
-                </tr>
-              
-               
-                </table> 
-                   
-                   
-                 
-                
-</ItemTemplate>
-            </asp:TemplateField>
-            <asp:BoundField DataField="PropertyID" HeaderText="PropertyID" 
-                InsertVisible="False" ReadOnly="True" SortExpression="PropertyID" 
-                Visible="False" />
-        </Columns>
-        <RowStyle CssClass="RowStyle" />
-            <EmptyDataRowStyle CssClass="EmptyRowStyle" />
-            <EmptyDataTemplate>
-                <div class="heading1">OOps! No Property Lsitings Found. Please Select Different Choice.</div>
-        </EmptyDataTemplate>
-            <PagerStyle CssClass="PagerStyle" />
-            <SelectedRowStyle CssClass="SelectedRowStyle" />
-            
-            <EditRowStyle CssClass="EditRowStyle" />
-            <AlternatingRowStyle CssClass="AltRowStyle" /> 
-    </asp:GridView>
-    <asp:SqlDataSource ID="SqlDsPropertyList" runat="server" 
-        ConnectionString="<%$ ConnectionStrings:ConnOres %>" 
+                        </asp:DropDownList>
+                            <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
+                                ConnectionString="<%$ ConnectionStrings:ApplicationServices %>" 
+                                SelectCommand="SELECT * FROM [cityMaster]"></asp:SqlDataSource>
+                        </div>
+                        <div class="col-lg-2 col-md-2">
+                         <asp:DropDownList ID="DropDownList3" runat="server">
+                        <asp:ListItem Value="" Text ="">- Select Price Range -</asp:ListItem>
+                        <asp:ListItem Value="1000~5000" Text ="1000~5000"></asp:ListItem>
+                        <asp:ListItem Value="5001~10000" Text ="5001~10000"></asp:ListItem>
+                        <asp:ListItem Value="10000 above" Text ="10000 above"></asp:ListItem>
+                        </asp:DropDownList>
+                        </div>
+                        <div class="col-lg-2 col-md-2">
+                         <asp:Button ID="Button3" runat="server" Text="Search" class="primary-btn mt-1"></asp:Button>
+                    </div>
+     </div>
+     <div class="col-lg-2 col-md-2">
+     </div>
+</div>
+    <div class="row">
+     <div class="col-lg-12 col-md-12">
+      <asp:DataList ID="DataList1" runat="server" CellPadding="4" DataKeyField="id" 
+                            DataSourceID="SqlDataSource1" ForeColor="#333333" 
+                            RepeatDirection="Horizontal" BorderColor="Blue" RepeatColumns="4" 
+                            GridLines="Both">
+    <AlternatingItemStyle BackColor="White" />
+    <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+    <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+    <ItemStyle BackColor="#E3EAEB" />
+    <ItemTemplate>
+         <%--id:
+        <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
+        <br />--%>
+        <asp:Image ID="imageLabel" runat="server" 
+            ImageUrl ='<%# Eval("images") %>' Width ="100px" Height="100px" />
+        <br />
+         <b>Type:</b>
+         <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("ptype") %>' />
+        <br />
+        <b> Title:</b> <asp:Label ID="titleLabel" runat="server" Text='<%# Eval("title") %>' />
+         <br />
+        <b> description:</b>
+        <asp:Label ID="descriptionLabel" runat="server" 
+             Text='<%# Eval("description") %>' />
+        <br />
+        <b> address:</b>
+        <asp:Label ID="addressLabel" runat="server" 
+            Text='<%# Eval("address") %>' />
+        <br />
+        <b> city:</b>
+        <asp:Label ID="cityLabel" runat="server" Text='<%# Eval("city") %>' />
+        <br />
+        <b> size:</b>
+        <asp:Label ID="sizeLabel" runat="server" Text='<%# Eval("location") %>' />
+        <br />
+        <b> price:</b>
+        <asp:Label ID="priceLabel" runat="server" Text='<%# Eval("price") %>' />
+        <br />
+       <b>  Property Added on:</b>
+        <asp:Label ID="createDateLabel" runat="server" 
+             Text='<%# Eval("createDate") %>' />
+        <br />
+         
         
-        
-        SelectCommand="SELECT Property.PropertyID, Property.PropertyDescription, Property.PropertyPrice, CONVERT (VARCHAR(11), Property.DateAdded, 106) AS DateAdded, Property.TitleHeading, Property.SizeofProperty, City.CityName, AreaLocation.AreaLocName, PropertyMode.ModeName, Units.UnitName FROM Property INNER JOIN City ON Property.CityId = City.CityID INNER JOIN PropertyMode ON Property.ModeID = PropertyMode.ModeID INNER JOIN Units ON Property.UnitID = Units.UnitID INNER JOIN AreaLocation ON Property.AreaLocID = AreaLocation.AreaLocID WHERE (Property.Active = 1) AND (AreaLocation.Active = 1) AND (PropertyMode.Active = 1) AND (Units.Active = 1) AND (Property.IsCancelled = 0)">
-    </asp:SqlDataSource>
-     
-    <asp:SqlDataSource ID="sqldsSearch" runat="server" 
-        ConnectionString="<%$ ConnectionStrings:ConnOres %>" 
-        
-        
-        SelectCommand="SELECT Property.PropertyID, Property.PropertyDescription, Property.PropertyPrice, CONVERT (VARCHAR(11), Property.DateAdded, 106) AS DateAdded, Property.TitleHeading, Property.SizeofProperty, City.CityName, AreaLocation.AreaLocName, PropertyMode.ModeName, Units.UnitName FROM Property INNER JOIN City ON Property.CityId = City.CityID INNER JOIN PropertyMode ON Property.ModeID = PropertyMode.ModeID INNER JOIN Units ON Property.UnitID = Units.UnitID INNER JOIN AreaLocation ON Property.AreaLocID = AreaLocation.AreaLocID LEFT OUTER JOIN State ON Property.StateID = State.StateID LEFT OUTER JOIN PropertyCatgeory ON Property.CategoryID = PropertyCatgeory.CategoryID LEFT OUTER JOIN PropertyType ON Property.TypeID = PropertyType.TypeID WHERE (Property.Active = 1) AND (AreaLocation.Active = 1) AND (PropertyMode.Active = 1) AND (Units.Active = 1) AND (City.CityID = @CityID) AND (PropertyMode.ModeID = @ModeID) AND (AreaLocation.AreaLocID = @AreaLocID) AND (PropertyType.TypeID = @TypeID) AND (PropertyCatgeory.CategoryID = @CategoryID) AND (State.StateID = @StateID) AND (Property.IsCancelled = 0)">
-        <SelectParameters>
-            <asp:Parameter Name="CityID" />
-            <asp:Parameter Name="ModeID" />
-            <asp:Parameter Name="AreaLocID" />
-            <asp:Parameter Name="TypeID" />
-            <asp:Parameter Name="CategoryID" />
-            <asp:Parameter Name="StateID" />
-        </SelectParameters>
-    </asp:SqlDataSource>
-     
-
-
-       
+        <asp:LinkButton ID="LinkButton1" href='<%# Eval("id", "PropertyDtl.aspx?ID={0}") %>' runat="server" class="primary-btn mt-1">View Detail</asp:LinkButton>
+        <asp:LinkButton ID="LinkButton2" href='<%# Eval("registerby", "UserDtl.aspx?ID={0}") %>' runat="server" class="primary-btn mt-1">Contact Detail</asp:LinkButton>
+         <br />
+    </ItemTemplate>
+    <SelectedItemStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
+                        </asp:DataList>
+                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+                            ConnectionString="<%$ ConnectionStrings:ApplicationServices %>" 
+                            
+                            SelectCommand="SELECT        a.id, a.ptype, a.title, a.description, a.address, a.city, a.state, a.location, a.pincode, a.psold, a.aminities, a.readytomove, SUBSTRING(CAST(a.createdate AS VARCHAR(20)), 1, 10) AS createDate, a.carpatarea, a.builtuparea, a.price, a.registerby, a.pricenego, a.uomba, a.uomca, b.pid, 
+                         b.images
+FROM            propertyMaster AS a LEFT OUTER JOIN
+                             (SELECT        TOP (1) pid, images
+                               FROM            propertyPhotoes) AS b ON a.id = b.pid
+WHERE ([psold] = @propertysold)">
+                            <SelectParameters>
+                                <asp:Parameter DefaultValue="N" Name="propertysold" Type="String" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+     </div>
+    </div>
+</div>
+</div>
+</section>
 </asp:Content>
 
