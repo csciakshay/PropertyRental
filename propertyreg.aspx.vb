@@ -122,8 +122,12 @@ Partial Class propertyreg
     End Function
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If Session("uid") Is Nothing Then
+            Response.Redirect("login.aspx")
+        Else
+            TextBox10.Text = getpropertyid()
+        End If
 
-        TextBox10.Text = getpropertyid()
 
     End Sub
 

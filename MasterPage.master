@@ -66,8 +66,8 @@
                                 <li><a href="userreg.aspx">User Register/Profile</a></li>
 								<li><a href="propertyreg.aspx">Property</a></li>
 								<li><a href="#contact">Contact</a></li>
-								<li><a href="generic.html">Generic</a></li>
-								<li><a href="elements.html">Elements</a></li>
+								<li><a href="propertyReport.aspx">Report</a></li>
+								<li><a href="graphsReport.aspx">Graphs</a></li>
 						    </ul>
 						  </div>						
 					</div>
@@ -79,11 +79,11 @@
 
 		
     <form id="form1" runat="server">
-    <div>
+   
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
-    </div>
+    
     </form>
     			<!-- start footer Area -->		
 			<footer class="footer-area section-gap">
