@@ -6,15 +6,15 @@
            
 <section class="sample-text-area">
 <div class="container">
-            <h1>USER REGISTRATION</h1>       
+            <h1>USER REGISTRATION / PROFILE</h1>       
 <div class="section-top-border">
 <div class="row">
 <div class="col-lg-2 col-md-2"></div>
 <div class="col-lg-6 col-md-6">
-<asp:TextBox ID="TextBox9" runat="server" placeholder="Search" class="single-input"></asp:TextBox>
+<asp:TextBox ID="TextBox9" runat="server" placeholder="Search" class="single-input" ReadOnly></asp:TextBox>
 </div>
 <div class="col-lg-2 col-md-2">
-<asp:Button ID="Button5" runat="server" Text="Search" class="primary-btn mt-20" CausesValidation ="false"/>
+<%--<asp:Button ID="Button5" runat="server" Text="Search" class="primary-btn mt-20" CausesValidation ="false"/>--%>
 </div>
 <div class="col-lg-2 col-md-2"></div>
 </div><hr />
@@ -105,7 +105,7 @@
                             </div>
                             <div class="col-lg-4 col-md-4">
                             <asp:FileUpload ID="FileUpload1" class="genric-btn success-border" runat="server" Width="221px" />
-                             <asp:Image ID="Image1" runat="server" Height="50" Width ="50"></asp:Image>
+                             <asp:Image ID="Image1" runat="server" Height="50" Width ="50" ImageUrl ="~/upload/noimage.png"></asp:Image>
                             </div>
                         </div>
                         <div class="row">

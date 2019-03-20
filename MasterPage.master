@@ -41,9 +41,9 @@
 					<div class="menu-top container">
 						<div class="d-flex justify-content-end align-items-center">
 							<ul class="list">
-								<li><a href="tel:+12312-3-1209">+12312-3-1209</a></li>
-								<li><a href="#">Sell / Rent Property</a></li>
-								<li><a href="Default3.aspx">login / register</a></li>
+								<li><a href="index.aspx">Sell / Rent Property</a></li>
+                                <li onclick="logout();"><asp:Image ID="Image1" runat="server" ImageUrl ="~/upload/noimage.png" Width="35" Height="30" style="border-radious:50%"></asp:Image></li>
+								<li><a href="login.aspx">login / register</a></li>
 							</ul>
 						</div>
 					</div>					
@@ -51,8 +51,8 @@
 
 				<nav class="navbar navbar-expand-lg  navbar-light bg-light">
 					<div class="container">
-						  <a class="navbar-brand" href="index.html">
-						  	<img src="img/logo.png" alt="">
+						  <a class="navbar-brand" href="index.aspx">
+						  	<img src="img/Home.png" alt="" height="40" width="50">
 						  </a>
 						  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						    <span class="navbar-toggler-icon"></span>
@@ -63,8 +63,8 @@
 								<li><a href="index.aspx">Home</a></li>
 								<li><a href="city.aspx">City</a></li>
                                 <li><a href="state.aspx">State</a></li>
-                                <li><a href="userreg.aspx">User Register</a></li>
-								<li><a href="#property">Property</a></li>
+                                <li><a href="userreg.aspx">User Register/Profile</a></li>
+								<li><a href="propertyreg.aspx">Property</a></li>
 								<li><a href="#contact">Contact</a></li>
 								<li><a href="generic.html">Generic</a></li>
 								<li><a href="elements.html">Elements</a></li>
@@ -172,5 +172,12 @@
 			<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 			<script src="js/jquery.magnific-popup.min.js"></script>
 			<script src="js/main.js"></script>	
+            <script type="text/javascript" >
+                function logout() {
+                    $.post("logout.aspx?action=logout", {}, function (data) {
+                        location.href = "logout.aspx";
+                    });
+                }
+            </script>
 </body>
 </html>

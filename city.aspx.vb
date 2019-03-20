@@ -28,7 +28,12 @@ Partial Class city
     End Function
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        TextBox1.Text = getcityid()
+        If Session("uid") Is Nothing Then
+            Response.Redirect("login.aspx")
+        Else
+            TextBox1.Text = getcityid()
+        End If
+
     End Sub
 
     Protected Sub Button1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button1.Click

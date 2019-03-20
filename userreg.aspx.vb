@@ -124,39 +124,44 @@ Partial Class Default3
 
     End Function
 
-    Protected Sub Button5_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button5.Click
+    Protected Sub Button5_Click()
         Try
             ss.conOpen()
-            '
-            Dim cmd As New SqlCommand("select * from userMaster where id='" + TextBox9.Text + "'", ss.con)
-            Dim adp As New SqlDataAdapter()
-            adp.SelectCommand = cmd
-            Dim dt As New Data.DataTable()
-            adp.Fill(dt)
-            If dt.Rows.Count > 0 Then
-                TextBox1.Text = dt.Rows(0)("name").ToString
-                TextBox2.Text = dt.Rows(0)("address").ToString
-                TextBox3.Text = dt.Rows(0)("mobileno").ToString
-                '  TextBox4.Text = dt.Rows(0)("password").ToString
-                ' TextBox5.Text = dt.Rows(0)("address").ToString
-                TextBox6.Text = dt.Rows(0)("pincode").ToString
-                TextBox7.Text = dt.Rows(0)("email").ToString
-                DropDownList1.SelectedValue = dt.Rows(0)("city").ToString
-                DropDownList2.SelectedValue = dt.Rows(0)("state").ToString
-                Image1.ImageUrl = dt.Rows(0)("imagepath").ToString
-                If dt.Rows(0)("gender").Equals("Male") Then
-                    RadioButton1.Checked = True
+            If Not Session("uid") Is Nothing Then
+                Dim cmd As New SqlCommand("select * from userMaster where id='" + Session("uid") + "'", ss.con)
+                Dim adp As New SqlDataAdapter()
+                adp.SelectCommand = cmd
+                Dim dt As New Data.DataTable()
+                adp.Fill(dt)
+                If dt.Rows.Count > 0 Then
+                    TextBox9.Text = dt.Rows(0)("id")
+                    TextBox1.Text = dt.Rows(0)("name").ToString
+                    TextBox2.Text = dt.Rows(0)("address").ToString
+                    TextBox3.Text = dt.Rows(0)("mobileno").ToString
+                    '  TextBox4.Text = dt.Rows(0)("password").ToString
+                    ' TextBox5.Text = dt.Rows(0)("address").ToString
+                    TextBox6.Text = dt.Rows(0)("pincode").ToString
+                    TextBox7.Text = dt.Rows(0)("email").ToString
+                    DropDownList1.SelectedValue = dt.Rows(0)("city").ToString
+                    DropDownList2.SelectedValue = dt.Rows(0)("state").ToString
+                    Image1.ImageUrl = dt.Rows(0)("imagepath").ToString
+                    If dt.Rows(0)("gender").Equals("Male") Then
+                        RadioButton1.Checked = True
+                    Else
+                        RadioButton2.Checked = False
+                    End If
                 Else
-                    RadioButton2.Checked = False
+                    MsgBox("No record found")
                 End If
-            Else
-                MsgBox("No record found")
             End If
-
         Catch ex As Exception
             MsgBox(ex.Message)
         Finally
             ss.conClose()
         End Try
+    End Sub
+
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Button5_Click()
     End Sub
 End Class

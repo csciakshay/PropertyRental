@@ -19,6 +19,8 @@ Partial Class propertyreg
             End If
             If CheckBox2.Checked Then
                 psold = "Y"
+            Else
+                psold = "N"
             End If
             If CheckBox10.Checked Then
                 readytomove = "Y"
@@ -78,6 +80,10 @@ Partial Class propertyreg
                     If hpf.ContentLength > 0 Then
                         hpf.SaveAs(Server.MapPath("upload") & "\" & Path.GetFileName(hpf.FileName))
                         cmd1.CommandText = "insert into PropertyPhotoes values(" + TextBox10.Text + ",'~\upload\" & Path.GetFileName(hpf.FileName) + "')"
+                        cmd1.Connection = ss.con
+                        cmd1.ExecuteNonQuery()
+                    Else
+                        cmd1.CommandText = "insert into PropertyPhotoes values(" + TextBox10.Text + ",'~\upload\noimage.png')"
                         cmd1.Connection = ss.con
                         cmd1.ExecuteNonQuery()
                     End If
