@@ -8,7 +8,7 @@ Partial Class login
 
     Protected Sub Button1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button1.Click
         ss.conOpen()
-        Dim cmd As New SqlCommand("select id,name,imagepath from UserMaster where name='" + TextBox1.Text + "' and password='" + FormsAuthentication.HashPasswordForStoringInConfigFile(TextBox2.Text, "md5") + "'", ss.con)
+        Dim cmd As New SqlCommand("select id,name,imagepath,role from UserMaster where name='" + TextBox1.Text + "' and password='" + FormsAuthentication.HashPasswordForStoringInConfigFile(TextBox2.Text, "md5") + "'", ss.con)
         Dim da As New SqlDataAdapter
         da.SelectCommand = cmd
         Dim dt As New Data.DataTable()
@@ -17,6 +17,7 @@ Partial Class login
             Session("uid") = dt.Rows(0)("id").ToString
             Session("uname") = dt.Rows(0)("name").ToString
             Session("uimage") = dt.Rows(0)("imagepath").ToString
+            Session("role") = dt.Rows(0)("role").ToString
             Response.Redirect("index.aspx")
         Else
             MsgBox("Invalid username/password")

@@ -61,13 +61,18 @@
 						  <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
 						    <ul class="navbar-nav">
 								<li><a href="index.aspx">Home</a></li>
-								<li><a href="city.aspx">City</a></li>
+                                <%If (Session("role") = "admin") Then%>
+                                <li><a href="city.aspx" if="<%  %>">City</a></li>
                                 <li><a href="state.aspx">State</a></li>
+                                <%End If%>
+            							
                                 <li><a href="userreg.aspx">User Register/Profile</a></li>
 								<li><a href="propertyreg.aspx">Property</a></li>
 								<li><a href="#contact">Contact</a></li>
+                                 <%If (Session("role") = "admin") Then%>
 								<li><a href="propertyReport.aspx">Report</a></li>
 								<li><a href="graphsReport.aspx">Graphs</a></li>
+                                <%End If%>
 						    </ul>
 						  </div>						
 					</div>

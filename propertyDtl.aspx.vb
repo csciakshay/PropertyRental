@@ -50,4 +50,22 @@ Partial Class propertyDtl
         Return max + 1
 
     End Function
+
+    Protected Sub Button1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button1.Click
+        ss.conOpen()
+        Dim cmd As New SqlCommand()
+        cmd.Connection = ss.con
+        cmd.CommandText = "insFavProperty"
+        cmd.CommandType = CommandType.StoredProcedure
+        cmd.Parameters.AddWithValue("uid", Session("uid"))
+        cmd.Parameters.AddWithValue("pid", pid)
+        If cmd.ExecuteNonQuery() Then
+            MsgBox("saved.")
+            Response.Redirect("index.aspx")
+        Else
+            MsgBox("Not saved.")
+        End If
+        ss.conClose()
+
+    End Sub
 End Class
