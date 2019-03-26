@@ -126,6 +126,27 @@ Partial Class propertyreg
             Response.Redirect("login.aspx")
         Else
             TextBox10.Text = getpropertyid()
+            Dim cmd As New SqlCommand("select id from propertyMaster where registerby = '" + Session("uid") + "'", ss.con)
+            Dim adp As New SqlDataAdapter()
+            adp.SelectCommand = cmd
+            Dim ds As New Data.DataSet
+            adp.Fill(ds)
+            If Not Page.IsPostBack Then
+                DropDownList6.DataTextField = ds.Tables(0).Columns("id").ToString()
+                DropDownList6.DataValueField = ds.Tables(0).Columns("id").ToString()
+                DropDownList6.DataSource = ds.Tables(0)
+                ' DropDownList6.DataTextField.Insert(0, "Select Property Id")
+                DropDownList6.DataBind()
+                DropDownList6.Items.Insert(0, New ListItem("Select Property Id", "0"))
+                DropDownList4.Items.Insert(0, New ListItem("Select UOM", "0"))
+                DropDownList5.Items.Insert(0, New ListItem("Select UOM", "0"))
+                DropDownList2.DataBind()
+                DropDownList2.Items.Insert(0, New ListItem("Select City", "0"))
+                DropDownList3.DataBind()
+                DropDownList3.Items.Insert(0, New ListItem("Select State", "0"))
+            End If
+            
+            
         End If
 
 
@@ -142,12 +163,18 @@ Partial Class propertyreg
 
             If CheckBox1.Checked Then
                 priceNego = "Y"
+            Else
+                priceNego = "N"
             End If
             If CheckBox2.Checked Then
                 psold = "Y"
+            Else
+                psold = "N"
             End If
             If CheckBox10.Checked Then
                 readytomove = "Y"
+            Else
+                readytomove = "N"
             End If
             If CheckBox3.Checked Then
                 aminities = aminities + "Lifts,"
@@ -171,10 +198,11 @@ Partial Class propertyreg
                 aminities = aminities + "FA,"
             End If
             Dim cmd As New SqlCommand()
+
             cmd.Connection = ss.con
             cmd.CommandType = CommandType.StoredProcedure
             cmd.CommandText = "updProperty"
-            cmd.Parameters.AddWithValue("id", TextBox10.Text)
+            cmd.Parameters.AddWithValue("id", DropDownList6.SelectedValue)
             cmd.Parameters.AddWithValue("ptype", DropDownList1.SelectedValue)
             cmd.Parameters.AddWithValue("title", TextBox1.Text)
             cmd.Parameters.AddWithValue("description", TextBox2.Text)
@@ -189,7 +217,7 @@ Partial Class propertyreg
             cmd.Parameters.AddWithValue("builduparea", TextBox7.Text)
             cmd.Parameters.AddWithValue("price", TextBox8.Text)
             cmd.Parameters.AddWithValue("createdate", Now.Date)
-            cmd.Parameters.AddWithValue("registerby", "1")
+            cmd.Parameters.AddWithValue("registerby", Session("uid"))
             cmd.Parameters.AddWithValue("pricenego", priceNego)
             cmd.Parameters.AddWithValue("psold", psold)
             cmd.Parameters.AddWithValue("uomba", DropDownList5.SelectedValue)
@@ -201,6 +229,7 @@ Partial Class propertyreg
             Else
                 MsgBox("Update fail!")
             End If
+
         Catch ex As Exception
             MsgBox(ex.Message)
         Finally
@@ -219,7 +248,7 @@ Partial Class propertyreg
         TextBox6.Text = ""
         TextBox7.Text = ""
         TextBox8.Text = ""
-        TextBox9.Text = ""
+        'TextBox9.Text = ""
         DropDownList1.SelectedIndex = 0
         DropDownList2.SelectedIndex = 0
         DropDownList3.SelectedIndex = 0
@@ -242,7 +271,7 @@ Partial Class propertyreg
         Try
             ss.conOpen()
             Dim aminities As String = ""
-            Dim cmd As New SqlCommand("select * from propertyMaster where id=" + TextBox9.Text + "", ss.con)
+            Dim cmd As New SqlCommand("select * from propertyMaster where id=" + DropDownList6.SelectedValue + "", ss.con)
             Dim adp As New SqlDataAdapter
             adp.SelectCommand = cmd
             Dim dt As New Data.DataTable

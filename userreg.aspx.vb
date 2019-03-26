@@ -163,5 +163,12 @@ Partial Class Default3
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Button5_Click()
+        If Not Page.IsPostBack Then
+            DropDownList1.DataBind()
+            DropDownList1.Items.Insert(0, New ListItem("-Select City-", "0"))
+            DropDownList2.DataBind()
+            DropDownList2.Items.Insert(0, New ListItem("-Select State-", "0"))
+        End If
+        
     End Sub
 End Class

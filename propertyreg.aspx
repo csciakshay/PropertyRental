@@ -10,7 +10,8 @@
 <div class="row">
 <div class="col-lg-2 col-md-2"></div>
 <div class="col-lg-6 col-md-6">
-<asp:TextBox ID="TextBox9" runat="server" placeholder="Search" class="single-input"></asp:TextBox>
+<asp:DropDownList ID="DropDownList6" runat="server" class="single-input"></asp:DropDownList>
+<%--<asp:TextBox ID="TextBox9" runat="server" placeholder="Search" class="single-input"></asp:TextBox>--%>
 </div>
 <div class="col-lg-2 col-md-2">
 <asp:Button ID="Button5" runat="server" Text="Search" class="primary-btn mt-20" CausesValidation ="false"/>

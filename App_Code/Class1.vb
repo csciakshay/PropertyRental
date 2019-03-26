@@ -5,11 +5,21 @@ Public Class Class1
     Public con As New SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings("ApplicationServices").ConnectionString)
 
     Public Sub conOpen()
-        con.Open()
+        Try
+            con.Open()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+
+        End Try
+
 
     End Sub
     Public Sub conClose()
-        con.Close()
+        Try
+            con.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
 
     End Sub
 

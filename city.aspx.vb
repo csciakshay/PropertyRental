@@ -32,6 +32,9 @@ Partial Class city
             Response.Redirect("login.aspx")
         Else
             TextBox1.Text = getcityid()
+            DropDownList1.DataBind()
+            DropDownList1.Items.Insert(0, New ListItem("Select City", "0"))
+
         End If
 
     End Sub

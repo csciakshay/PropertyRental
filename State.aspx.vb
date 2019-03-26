@@ -80,6 +80,8 @@ Partial Class state
             Response.Redirect("login.aspx")
         Else
             TextBox1.Text = getstateid()
+            DropDownList1.DataBind()
+            DropDownList1.Items.Insert(0, New ListItem("Select State", "0"))
         End If
 
 
