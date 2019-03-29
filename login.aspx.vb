@@ -25,7 +25,7 @@ Partial Class login
                 Response.Redirect("login.aspx")
             End If
         Catch ex As Exception
-            MsgBox(ex.Message)
+            ' MsgBox(ex.Message)
         Finally
             ss.conClose()
 
