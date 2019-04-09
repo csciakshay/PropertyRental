@@ -86,4 +86,49 @@ Partial Class propertyDtl
         End Try
 
     End Sub
+
+    Protected Sub Button2_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button2.Click
+        Try
+            ss.conOpen()
+
+            Dim CMD As New SqlCommand("select * from PropertyMaster where id='" + pid + "'", ss.con)
+            Dim adp As New SqlDataAdapter()
+            Dim dt As New Data.DataTable()
+            adp.SelectCommand = CMD
+            adp.Fill(dt)
+
+            'Dim CMD1 As New SqlCommand("select images from PropertyImages where propertyid='" + pid + "'", ss.con)
+            'Dim adp1 As New SqlDataAdapter()
+            'Dim dt1 As New Data.DataTable()
+            'adp1.SelectCommand = CMD1
+            'adp1.Fill(dt1)
+            Dim cmd3 As New SqlCommand("select * from UserMaster where id='" + dt.Rows(0)("registerby") + "'", ss.con)
+            Dim adp2 As New SqlDataAdapter()
+            Dim dt2 As New Data.DataTable()
+            adp2.SelectCommand = cmd3
+            adp2.Fill(dt2)
+
+
+            Dim fullUrl As String = "Hey " + dt2.Rows(0)("name").ToString + " your property " + dt.Rows(0)("title").ToString + " is viewed by " + Session("uname") + " and mailid is " + Session("email") + " and contact number is " + Session("mobile")
+            Dim smtpClient As System.Net.Mail.SmtpClient = New System.Net.Mail.SmtpClient("smtp.gmail.com", 587)
+
+            Dim message As System.Net.Mail.MailMessage = New System.Net.Mail.MailMessage(Session("email"), dt2.Rows(0)("email").ToString, "Property viewed", "")
+            message.IsBodyHtml = True
+            message.Body = fullUrl
+            smtpClient.EnableSsl = True
+            smtpClient.Send(message)
+            Dim cmd1 As New SqlCommand("update propertyMaster set psold='Y' where id='" + pid + "'", ss.con)
+            If cmd1.ExecuteNonQuery() Then
+                MsgBox("Property Booked and mail sent to owner")
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        Finally
+            ss.conClose()
+
+        End Try
+       
+
+    End Sub
 End Class

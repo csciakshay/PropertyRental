@@ -14,7 +14,7 @@ Partial Class userDtl
         id = Request.QueryString("ID")
         ss.conOpen()
 
-        Dim CMD As New SqlCommand("select * from UserMaster where id='" + id + "'", ss.con)
+        Dim CMD As New SqlCommand("select name,gender,address,pincode,email.mobileno,imagepath,(select cityname from dbo.getCity(a.city)) as city, (select stateName from dbo.getState(a.state)) as state from UserMaster where id='" + id + "'", ss.con)
         Dim adp As New SqlDataAdapter()
         Dim dt As New Data.DataTable()
         adp.SelectCommand = CMD

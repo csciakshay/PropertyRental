@@ -7,7 +7,7 @@ Partial Class logout
         'Response.Clear()
         Session.Abandon()
         Session.Clear()
-        Session.Timeout = 0
+        ' Session.Timeout = 0
         Response.Redirect("login.aspx")
         'End If
 

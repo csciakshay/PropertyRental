@@ -30,6 +30,16 @@
                                 SelectCommand="SELECT * FROM [cityMaster]"></asp:SqlDataSource>
                         </div>
                         <div class="col-lg-2 col-md-2">
+                        <asp:Label ID="Label8" runat="server" Text="State"></asp:Label>
+                        <asp:DropDownList ID="DropDownList4" runat="server" DataSourceID="SqlDataSource5" 
+                                DataTextField="stateName" DataValueField="stateId">
+                        
+                        </asp:DropDownList>
+                            <asp:SqlDataSource ID="SqlDataSource5" runat="server" 
+                                ConnectionString="<%$ ConnectionStrings:ApplicationServices %>" 
+                                SelectCommand="SELECT * FROM [stateMaster]"></asp:SqlDataSource>
+                        </div>
+                        <div class="col-lg-2 col-md-2">
                         <asp:Label ID="Label3" runat="server" Text="Price"></asp:Label>
                          <asp:DropDownList ID="DropDownList3" runat="server">
                         <asp:ListItem Value="" Text ="">- Select Price Range -</asp:ListItem>
